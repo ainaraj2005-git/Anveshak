@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anveshak</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;background:#f8f7f3;color:#151515;overflow-x:hidden}
+        header{width:100%;padding:15px 7%;display:flex;align-items:center;justify-content:space-between;background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid #eee}
+        .logo-img{height:85px;width:auto;object-fit:contain}
+        nav{display:flex;gap:35px;align-items:center}
+        nav a{text-decoration:none;color:#333;font-size:13px;font-weight:400;transition:.3s}
+        nav a:hover{color:#b55e42}
+        nav a.active{color:#333;font-weight:400;border-bottom:none;padding-bottom:3px}
+        .login-btn{padding:8px 18px;border:1px solid #222;border-radius:4px;background:transparent;cursor:pointer;font-size:12px}
+        .hero{min-height:calc(100vh - 80px);display:flex;align-items:center;justify-content:space-between;gap:60px;padding:50px 7% 80px}
+        .hero-content{width:48%}.hero-title{font-size:clamp(32px,4vw,52px);line-height:1.05;font-weight:700;margin-bottom:20px}.hero-title .orange{color:#b96245}
+        .description{max-width:560px;color:#777;font-size:13px;line-height:1.6;margin-bottom:22px}
+        .buttons{display:flex;gap:10px;margin-bottom:25px}.primary-btn,.secondary-btn{padding:11px 17px;border-radius:3px;font-size:11px;cursor:pointer;transition:.3s}
+        .primary-btn{background:#101b31;color:#fff;border:1px solid #101b31}.primary-btn:hover{background:#24324e}
+        .secondary-btn{background:transparent;color:#222;border:1px solid #aaa}.secondary-btn:hover{background:#eee}
+        .stats{display:flex;gap:25px}.stat{display:flex;flex-direction:column}.stat-number{font-size:14px;font-weight:500;margin-bottom:3px}.stat-label{font-size:8px;color:#777}
+        .hero-image-section{width:48%;position:relative}.image-box{width:100%;height:330px;overflow:hidden;position:relative;border-radius:8px}.image-box img{width:100%;height:100%;object-fit:cover;display:block}
+        .image-caption{position:absolute;left:-10px;bottom:-42px;border-left:2px solid #b96245;padding-left:12px;font-size:14px;color:#777}.image-caption strong{color:#555;font-weight:500}
+        .bottom-line{width:86%;height:1px;background:#ddd;margin:0 auto}
+        @media (max-width:850px){header{padding:14px 5%}nav{gap:15px}.hero{flex-direction:column;padding:40px 5%}.hero-content,.hero-image-section{width:100%}.hero-title{font-size:38px}.image-box{height:300px}.logo-img{height:60px}}
+        @media (max-width:550px){nav{display:none}.hero-title{font-size:32px}.stats{gap:18px}.image-box{height:230px}}
+        .slide2-problem{padding:80px 7%;background:#fff;border-top:1px solid #eee}
+        .slide2-badge{display:inline-block;background:#fff1ec;color:#b96245;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1px}
+        .slide2-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.15;margin:16px 0}.slide2-title span{color:#8b1a1a}
+        .slide2-subtitle{color:#777;font-size:14px;line-height:1.6;margin-bottom:40px;max-width:650px}
+        .slide2-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:start}
+        .slide2-review-title{font-size:20px;font-weight:700;margin-bottom:22px}
+        .slide2-card{display:flex;gap:14px;padding:16px 18px;border:1px solid #f0e9e2;border-radius:10px;background:#fcfaf7;margin-bottom:12px;transition:.3s}
+        .slide2-icon{min-width:40px;height:40px;border-radius:8px;display:grid;place-items:center;font-size:18px;background:#f5f0eb}
+        .slide2-card h4{font-size:14px;font-weight:600;margin-bottom:4px}.slide2-card p{font-size:12px;color:#777;line-height:1.5}
+        .slide2-img-box{width:100%;height:320px;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 15px 40px rgba(0,0,0,.1)}.slide2-img-box img{width:100%;height:100%;object-fit:cover}
+        .slide2-risk{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.8);color:#fff;padding:7px 12px;border-radius:20px;font-size:10px;font-weight:600;display:flex;align-items:center;gap:6px}
+        .slide2-dot{width:7px;height:7px;background:#ef4444;border-radius:50%;animation:slide2blink 1.5s infinite}@keyframes slide2blink{0%,100%{opacity:1}50%{opacity:.3}}
+        .analytics-box{margin-top:20px;border:1px solid #e8e0d8;border-radius:14px;padding:20px;background:#fcfaf7}
+        .analytics-title{font-size:16px;font-weight:700;margin-bottom:14px}.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px}
+        .bar-label{width:55px;font-weight:600}.bar-track{flex:1;height:20px;background:#e9e2da;border-radius:6px;overflow:hidden}
+        .bar-fill-manual{width:32%;height:100%;background:#ff8a00}.bar-fill-ai{width:94%;height:100%;background:#0b4a8a}.bar-value{width:40px;font-weight:700}
+        .stats-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.mini-card{background:#fff;border:1px solid #eee;border-radius:10px;padding:12px;text-align:center}.mini-card small{font-size:11px;color:#777}.mini-card b{display:block;font-size:18px;margin-top:4px}
+        @media(max-width:850px){.slide2-grid{grid-template-columns:1fr}.slide2-img-box{height:300px}}
+        .slide3-solution{padding:90px 7%;background:#fff;border-top:1px solid #eee;text-align:center}
+        .slide3-badge{display:inline-block;background:#f8f7f3;color:#6b7280;padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.2px;margin-bottom:18px}
+        .slide3-title{font-size:clamp(32px,4vw,48px);font-weight:900;color:#0f0f0f;line-height:1.1;margin-bottom:14px;letter-spacing:-0.5px}
+        .slide3-subtitle{color:#555;font-size:14px;line-height:1.6;max-width:760px;margin:0 auto 48px auto}
+        .slide3-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:left}
+        .slide3-card{border:1px solid #eaeaea;border-radius:14px;background:#fff;padding:22px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.04);transition:.4s}
+        .slide3-card:hover{box-shadow:0 12px 30px rgba(0,0,0,.08);transform:translateY(-4px)}
+        .slide3-card::before{content:'';position:absolute;left:0;top:0;width:6px;height:100%;background:#ff6a00}
+        .slide3-icon{width:44px;height:44px;border-radius:10px;background:#ff6a00;display:grid;place-items:center;color:#fff;font-size:20px;margin-bottom:18px}
+        .slide3-card h3{font-size:17px;font-weight:800;line-height:1.3;margin-bottom:10px;color:#111}
+        .slide3-card p{font-size:12.5px;color:#666;line-height:1.6;margin-bottom:18px}
+        .slide3-tags{display:flex;flex-wrap:wrap;gap:7px}
+        .slide3-tag{font-size:10.5px;background:#f1f5f9;color:#334155;padding:5px 10px;border-radius:6px;font-weight:600}
+        @media(max-width:950px){.slide3-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+        .slide4-live{padding:70px 7% 80px;background:#fbfaf8;border-top:none !important;border-bottom:none !important;position:relative;overflow:hidden;text-align:center}
+        .slide4-badge{display:inline-block;background:#eef4ff;color:#355aa8;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.8px;margin-bottom:14px}
+        .slide4-title{font-family:Georgia,serif;font-size:38px;font-weight:900;color:#0f172a;margin-bottom:10px}
+        .slide4-sub{color:#666;font-size:13px;line-height:1.6;margin-bottom:34px}
+        .slide4-rig{position:absolute;right:40px;top:110px;width:260px;opacity:.12;pointer-events:none}
+        .slide4-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1000px;margin:0 auto;text-align:left}
+        .slide4-card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid #f0f0f0;transition:.4s}
+        .slide4-card:hover{transform:translateY(-4px)}
+        .slide4-icon{width:36px;height:36px;background:#e8efff;border-radius:8px;display:grid;place-items:center;font-size:18px}
+        .slide4-textarea{width:100%;margin-top:14px;background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:12px;font-size:12px;min-height:75px;outline:none;resize:none}
+        .slide4-btn{width:100%;margin-top:14px;background:#0a1e42;color:#fff;padding:11px;border:none;border-radius:10px;font-weight:700;font-size:13px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:.3s}
+        .slide4-btn:hover{transform:translateY(-2px);background:#122a5a}
+        .slide4-small{font-size:11px;color:#666}
+        .slide4-high{background:#d93c2f;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;display:inline-block}
+        .slide4-bar{width:100%;height:7px;background:#eee;border-radius:10px;margin-top:8px;overflow:hidden}.slide4-fill{width:0%;height:100%;background:#f68c1e;border-radius:10px;transition:1.2s}
+        .slide4-reco{margin-top:18px;background:#f7fbf8;border:1px solid #e6efe8;border-radius:10px;padding:12px;display:flex;gap:10px}
+        @media(max-width:850px){.slide4-grid{grid-template-columns:1fr}.slide4-title{font-size:28px}.slide4-rig{display:none}}
+
+        /* ===== VIDEO WALI ANIMATION - SIRF YE ADD KIYA ===== */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes zoomSlow{from{transform:scale(1.08)}to{transform:scale(1)}}
+        .reveal{opacity:0;transform:translateY(28px);transition:0.75s cubic-bezier(.2,.8,.2,1)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+        .hero-title{animation:fadeUp .9s ease both}.description{animation:fadeUp .9s .15s both}.buttons{animation:fadeUp .9s .3s both}.stats{animation:fadeUp .9s .45s both}
+        .hero-image-section{animation:slideRight 1s .25s both}.image-box img{animation:zoomSlow 3s ease both}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Anveshak Logo" class="logo-img">
+        <nav>
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#live" class="active">Live Demo</a>
+        </nav>
+        <button class="login-btn" onclick="loginAlert()">LOGIN</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">AI Engine to Detect <span class="orange">Serious Injury & Fatality</span> Precursors</h1>
+                <p class="description">Automatically analyzes OIL safety reports to identify<br>potential Serious Injury & Fatality(SIF) precursors</p>
+                <div class="buttons">
+                    <button class="primary-btn" onclick="document.getElementById('live').scrollIntoView({behavior:'smooth'})">Analyze Report Now</button>
+                    <button class="secondary-btn" onclick="howItWorks()">How it Works</button>
+                </div>
+                <div class="stats">
+                    <div class="stat"><span class="stat-number">92%</span><span class="stat-label">Accuracy(DYNAMIC)</span></div>
+                    <div class="stat"><span class="stat-number">~2 sec</span><span class="stat-label">Analysis Time(DYNAMIC)</span></div>
+                    <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Prevention Focus(DYNAMIC)</span></div>
+                </div>
+            </div>
+            <div class="hero-image-section">
+                <div class="image-box"><img src="https://images.unsplash.com/photo-1577199001468-44c049e7603f?q=80&w=1170&auto=format&fit=crop" alt="Oil Worker"></div>
+                <div class="image-caption"><strong>⚠ SIF Detected</strong><br>Working at Height without PPE</div>
+            </div>
+        </section>
+        <div class="bottom-line"></div>
+
+        <section class="slide2-problem" id="problem">
+            <span class="slide2-badge reveal">THE PROBLEM</span>
+            <h2 class="slide2-title reveal reveal-d1">Every Small Report Can Reveal a <span>Serious Injury & Fatality Risks</span></h2>
+            <p class="slide2-subtitle reveal reveal-d2">Our AI powered engine analyzes daily safety reports,identifies hidden SIF precursors and enables proactive intervention before a near-miss become a major incident</p>
+            <div class="slide2-grid">
+                <div>
+                    <h3 class="slide2-review-title reveal">⚠️ Why Does Manual Review Fail?</h3>
+                    <div class="slide2-card reveal"><div class="slide2-icon">📄</div><div><h4>100+ Safety Reports Everyday</h4><p>The sheer volume of daily reports makes it difficult for supervisors to review every observation with the required attention.</p></div></div>
+                    <div class="slide2-card reveal reveal-d1"><div class="slide2-icon">⚠️</div><div><h4>Critical SIF Precursors Hidden in Text</h4><p>High-risk indicators such as working at height, confined spaces, unsafe lifting, and energy isolation can be buried within routine reports.</p></div></div>
+                    <div class="slide2-card reveal reveal-d2"><div class="slide2-icon">⏰</div><div><h4>Delayed Identification of Critical Risks</h4><p>Manual analysis can delay the detection and escalation of emerging high-severity hazards.</p></div></div>
+                    <div class="slide2-card reveal reveal-d3"><div class="slide2-icon">🔍</div><div><h4>Near-Miss Patterns Remain Unconnected</h4><p>Risk signals spread across multiple reports are difficult to correlate manually, allowing recurring hazards to remain unnoticed.</p></div></div>
+                </div>
+                <div class="reveal reveal-d2">
+                    <div class="slide2-img-box">
+                        <img src="https://plus.unsplash.com/premium_photo-1682144333631-eac578433ea1?q=80&w=1170&auto=format&fit=crop" alt="Construction Site">
+                        <div class="slide2-risk"><span class="slide2-dot"></span> HIGH SIF RISK ZONE</div>
+                    </div>
+                    <div class="analytics-box">
+                        <div class="analytics-title">SIF Detection Performance</div>
+                        <div class="bar-row"><span class="bar-label">Manual Review</span><div class="bar-track"><div class="bar-fill-manual"></div></div><span class="bar-value" style="color:#ff8a00">32%</span></div>
+                        <div class="bar-row"><span class="bar-label">AI Detection</span><div class="bar-track"><div class="bar-fill-ai"></div></div><span class="bar-value" style="color:#0b4a8a">94%</span></div>
+                        <div class="stats-mini">
+                            <div class="mini-card"><small>Avg Delay</small><b>10 Days</b></div>
+                            <div class="mini-card"><small>Reports/Day</small><b>100+</b></div>
+                            <div class="mini-card"><small>Risk Reduction</small><b style="color:#0a8a5c">68%</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide3-solution reveal" id="solution">
+            <div class="slide3-badge">OUR SOLUTION • SIH26165 OIL INDIA LIMITED</div>
+            <h2 class="slide3-title reveal">The 3-Step AI/NLP Engine</h2>
+            <p class="slide3-subtitle reveal reveal-d1">An intelligent system to detect Serious Injury & Fatality (SIF) Precursors from OIL's Unsafe-Act, Unsafe-Condition and Near-Miss Reports.</p>
+            <div class="slide3-grid">
+                <div class="slide3-card reveal"><div class="slide3-icon">📄</div><h3>Report Ingestion &<br>Structuring</h3><p>Ingests and structures unstructured field reports into UA / UC / Near-Miss categories using advanced NLP preprocessing.</p><div class="slide3-tags"><span class="slide3-tag">Document Scan</span><span class="slide3-tag">Language Detection</span><span class="slide3-tag">Validation</span></div></div>
+                <div class="slide3-card reveal reveal-d1"><div class="slide3-icon">⚙️</div><h3>AI/NLP Detection<br>Engine</h3><p>Transformer-based model identifies SIF precursors, risk patterns and severity signals in real-time with high accuracy.</p><div class="slide3-tags"><span class="slide3-tag">Entity Recognition</span><span class="slide3-tag">Risk Scoring</span><span class="slide3-tag">Context Analysis</span></div></div>
+                <div class="slide3-card reveal reveal-d2"><div class="slide3-icon">🔔</div><h3>Actionable Insight &<br>Alerting</h3><p>Delivers prioritized risks, heatmaps and preventive recommendations to HSE teams for immediate action.</p><div class="slide3-tags"><span class="slide3-tag">Dashboard</span><span class="slide3-tag">Alerts</span><span class="slide3-tag">Compliance</span></div></div>
+            </div>
+        </section>
+
+        <section class="slide4-live reveal" id="live">
+            <svg class="slide4-rig" viewBox="0 0 300 200" fill="none"><g stroke="#aab9d1" stroke-width="1.2" opacity="0.6"><path d="M150 20 L140 60 L160 60 L150 20 M130 60 L170 60 L175 150 L125 150 Z M125 100 L100 120 M175 100 L200 120 M120 150 L80 170 M180 150 L220 170 M100 120 L100 170 M200 120 L220 170 M80 170 L220 170"/></g></svg>
+            <div class="slide4-badge">THE LIVE DEMO</div>
+            <h2 class="slide4-title">Live Demo</h2>
+            <p class="slide4-sub">Analyze a safety report in real time with AI — see risk level,<br>precursors, and recommendations.</p>
+
+            <div class="slide4-grid">
+                <div class="slide4-card reveal">
+                    <div style="display:flex;gap:10px;align-items:center"><div class="slide4-icon">📄</div><div><b style="font-size:14px;font-weight:700">Input Report</b><div class="slide4-small" style="margin-top:2px">Paste or type the safety report to analyze.</div></div></div>
+                    <textarea class="slide4-textarea" id="liveInput" placeholder="Example: Worker was working at height 12ft without helmet, oil spilled..."></textarea>
+                    <button class="slide4-btn" onclick="analyzeLive()"><span>🧠 Analyze with AI Engine</span><span>→</span></button>
+                    <div style="margin-top:16px;border-top:1px solid #eee;padding-top:12px;display:flex;gap:10px"><div>🛡️</div><div class="slide4-small">Our AI engine analyzes your report and identifies<br>potential risks and safety precursors instantly.</div></div>
+                </div>
+
+                <div class="slide4-card reveal reveal-d1" id="liveResult" style="opacity:0.85">
+                    <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;gap:8px;align-items:center;font-weight:700;font-size:13px"><span style="width:20px;height:20px;border:1.5px solid #2e7d4f;border-radius:50%;display:grid;place-items:center;color:#2e7d4f;font-size:11px">✓</span> Analysis Complete</div><span style="font-size:11px;color:#555"><span style="color:#2e7d4f">●</span> Real-time</span></div>
+                    <div style="border-top:1px solid #eee;margin:14px 0"></div>
+                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:14px">
+                        <div><div class="slide4-small">SIF Risk Level</div><div style="margin-top:6px"><span class="slide4-high" id="liveRisk">HIGH</span></div><div style="margin-top:16px"><div class="slide4-small">Classification</div><div style="color:#d93c2f;font-weight:800;margin-top:4px;font-size:14px">Unsafe Act</div></div></div>
+                        <div style="border-left:1px solid #eee;padding-left:14px"><div class="slide4-small">Risk Score</div><div style="font-size:26px;font-weight:900;margin-top:4px" id="liveScore">87%</div><div class="slide4-bar"><div class="slide4-fill" id="liveFill"></div></div><div style="text-align:right;color:#f68c1e;font-size:11px;font-weight:700;margin-top:4px">87%</div></div>
+                    </div>
+                    <div class="slide4-reco"><div style="font-size:18px">💡</div><div><div style="color:#2e7d4f;font-size:12px;font-weight:700">Recommendation</div><div style="font-size:11px;margin-top:4px;line-height:1.5">Pause work. Enforce PPE. Clean up spill.</div></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function howItWorks(){alert("AI analyzes Unsafe Acts, Unsafe Conditions and Near-Miss reports using NLP.")}
+        function loginAlert(){alert("Login page will open here.")}
+        function analyzeLive(){
+            let t=document.getElementById('liveInput').value.trim();
+            if(!t){alert('Please paste a report');return;}
+            let s=t.toLowerCase().includes('height')||t.toLowerCase().includes('helmet')?87:68;
+            document.getElementById('liveResult').style.opacity='1';
+            document.getElementById('liveScore').innerText=s+'%';
+            document.getElementById('liveFill').style.width=s+'%';
+            document.getElementById('liveRisk').innerText=s>80?'HIGH':'MEDIUM';
+            document.getElementById('liveRisk').style.background=s>80?'#d93c2f':'#e67e22';
+        }
+        const reveals=document.querySelectorAll('.reveal');
+        const obs=new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);}
+            });
+        },{threshold:0.15});
+        reveals.forEach(r=>obs.observe(r));
+        window.addEventListener('load',()=>{
+            setTimeout(()=>{document.getElementById('liveFill').style.width='87%'},800);
+        });
+    </script>
+</body>
+</html>
