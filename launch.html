@@ -11,9 +11,9 @@
         nav{display:flex;gap:35px;align-items:center}
         nav a{text-decoration:none;color:#333;font-size:13px;font-weight:400;transition:.3s}
         nav a:hover{color:#b55e42}
-        nav a.active{color:#333;font-weight:400;border-bottom:none;padding-bottom:3px}
+        nav a.active{color:#333;font-weight:400;border-bottom:2px solid #0a1e42;padding-bottom:3px}
         .login-btn{padding:8px 18px;border:1px solid #222;border-radius:4px;background:transparent;cursor:pointer;font-size:12px}
-        .hero{min-height:auto;display:flex;align-items:center;justify-content:space-between;gap:60px;padding:50px 7% 60px}
+        .hero{min-height:auto;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:40px 7% 50px}
         .hero-content{width:48%}.hero-title{font-size:clamp(32px,4vw,52px);line-height:1.05;font-weight:700;margin-bottom:20px}.hero-title .orange{color:#b96245}
         .description{max-width:560px;color:#777;font-size:13px;line-height:1.6;margin-bottom:22px}
         .buttons{display:flex;gap:10px;margin-bottom:25px}.primary-btn,.secondary-btn{padding:11px 17px;border-radius:3px;font-size:11px;cursor:pointer;transition:.3s}
@@ -23,8 +23,8 @@
         .hero-image-section{width:48%;position:relative}.image-box{width:100%;height:330px;overflow:hidden;position:relative;border-radius:8px}.image-box img{width:100%;height:100%;object-fit:cover;display:block}
         .image-caption{position:absolute;left:-10px;bottom:-42px;border-left:2px solid #b96245;padding-left:12px;font-size:14px;color:#777}.image-caption strong{color:#555;font-weight:500}
         .bottom-line{width:86%;height:1px;background:#ddd;margin:0 auto}
-        @media (max-width:850px){header{padding:14px 5%}nav{gap:15px}.hero{flex-direction:column;padding:25px 5% 30px;min-height:auto}.hero-content,.hero-image-section{width:100%}.hero-title{font-size:38px}.image-box{height:300px}.logo-img{height:60px}}
-        @media (max-width:550px){nav{display:none}.hero-title{font-size:32px}.stats{gap:18px}.image-box{height:230px}}
+        @media (max-width:850px){header{padding:14px 5%}nav{gap:15px}.hero{flex-direction:column;padding:20px 5% 25px;gap:18px;min-height:auto;align-items:flex-start}.hero-content,.hero-image-section{width:100%}.hero-title{font-size:34px;line-height:1.1}.image-box{height:260px;margin-top:10px}.logo-img{height:60px}.image-caption{position:relative;left:0;bottom:0;margin-top:12px;border-left:2px solid #b96245}}
+        @media (max-width:550px){nav{display:none}.hero{padding:15px 5% 20px;gap:15px}.hero-title{font-size:28px}.stats{gap:18px}.image-box{height:210px}.description{font-size:12.5px}}
         .slide2-problem{padding:80px 7%;background:#fff;border-top:1px solid #eee}
         .slide2-badge{display:inline-block;background:#fff1ec;color:#b96245;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1px}
         .slide2-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.15;margin:16px 0}.slide2-title span{color:#8b1a1a}
@@ -74,8 +74,6 @@
         .slide4-bar{width:100%;height:7px;background:#eee;border-radius:10px;margin-top:8px;overflow:hidden}.slide4-fill{width:0%;height:100%;background:#f68c1e;border-radius:10px;transition:1.2s}
         .slide4-reco{margin-top:18px;background:#f7fbf8;border:1px solid #e6efe8;border-radius:10px;padding:12px;display:flex;gap:10px}
         @media(max-width:850px){.slide4-grid{grid-template-columns:1fr}.slide4-title{font-size:28px}.slide4-rig{display:none}}
-
-        /* ===== VIDEO WALI ANIMATION - SIRF YE ADD KIYA ===== */
         @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
         @keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
         @keyframes zoomSlow{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -96,7 +94,6 @@
         </nav>
         <button class="login-btn" onclick="loginAlert()">LOGIN</button>
     </header>
-
     <main>
         <section class="hero">
             <div class="hero-content">
@@ -118,7 +115,6 @@
             </div>
         </section>
         <div class="bottom-line"></div>
-
         <section class="slide2-problem" id="problem">
             <span class="slide2-badge reveal">THE PROBLEM</span>
             <h2 class="slide2-title reveal reveal-d1">Every Small Report Can Reveal a <span>Serious Injury & Fatality Risks</span></h2>
@@ -149,7 +145,6 @@
                 </div>
             </div>
         </section>
-
         <section class="slide3-solution reveal" id="solution">
             <div class="slide3-badge">OUR SOLUTION • SIH26165 OIL INDIA LIMITED</div>
             <h2 class="slide3-title reveal">The 3-Step AI/NLP Engine</h2>
@@ -160,13 +155,11 @@
                 <div class="slide3-card reveal reveal-d2"><div class="slide3-icon">🔔</div><h3>Actionable Insight &<br>Alerting</h3><p>Delivers prioritized risks, heatmaps and preventive recommendations to HSE teams for immediate action.</p><div class="slide3-tags"><span class="slide3-tag">Dashboard</span><span class="slide3-tag">Alerts</span><span class="slide3-tag">Compliance</span></div></div>
             </div>
         </section>
-
         <section class="slide4-live reveal" id="live">
             <svg class="slide4-rig" viewBox="0 0 300 200" fill="none"><g stroke="#aab9d1" stroke-width="1.2" opacity="0.6"><path d="M150 20 L140 60 L160 60 L150 20 M130 60 L170 60 L175 150 L125 150 Z M125 100 L100 120 M175 100 L200 120 M120 150 L80 170 M180 150 L220 170 M100 120 L100 170 M200 120 L220 170 M80 170 L220 170"/></g></svg>
             <div class="slide4-badge">THE LIVE DEMO</div>
             <h2 class="slide4-title">Live Demo</h2>
             <p class="slide4-sub">Analyze a safety report in real time with AI — see risk level,<br>precursors, and recommendations.</p>
-
             <div class="slide4-grid">
                 <div class="slide4-card reveal">
                     <div style="display:flex;gap:10px;align-items:center"><div class="slide4-icon">📄</div><div><b style="font-size:14px;font-weight:700">Input Report</b><div class="slide4-small" style="margin-top:2px">Paste or type the safety report to analyze.</div></div></div>
@@ -174,7 +167,6 @@
                     <button class="slide4-btn" onclick="analyzeLive()"><span>Analyze with AI Engine</span><span>→</span></button>
                     <div style="margin-top:16px;border-top:1px solid #eee;padding-top:12px;display:flex;gap:10px"><div>🛡️</div><div class="slide4-small">Our AI engine analyzes your report and identifies<br>potential risks and safety precursors instantly.</div></div>
                 </div>
-
                 <div class="slide4-card reveal reveal-d1" id="liveResult" style="opacity:0.85">
                     <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;gap:8px;align-items:center;font-weight:700;font-size:13px"><span style="width:20px;height:20px;border:1.5px solid #2e7d4f;border-radius:50%;display:grid;place-items:center;color:#2e7d4f;font-size:11px">✓</span> Analysis Complete</div><span style="font-size:11px;color:#555"><span style="color:#2e7d4f">●</span> Real-time</span></div>
                     <div style="border-top:1px solid #eee;margin:14px 0"></div>
@@ -187,7 +179,6 @@
             </div>
         </section>
     </main>
-
     <script>
         function howItWorks(){alert("AI analyzes Unsafe Acts, Unsafe Conditions and Near-Miss reports using NLP.")}
         function loginAlert(){alert("Login page will open here.")}
